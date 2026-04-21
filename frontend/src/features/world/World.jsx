@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 
-import { Floor } from "./Floor";
+import { Floor } from "../../components/world/Floor";
 
 export function World() {
   return (
