@@ -3,8 +3,16 @@ import useMenuStore from "../../../store/menu/useMenuStore";
 import { modelData } from "../../../data/modelData";
 
 export const MenuSlider = () => {
-  const { isOpen, closeMenu, viewMode, setViewMode, ownedItems, purchaseItem } =
-    useMenuStore();
+  const {
+    isOpen,
+    closeMenu,
+    viewMode,
+    setViewMode,
+    ownedItems,
+    purchaseItem,
+    equipItem,
+    equippedItem,
+  } = useMenuStore();
   // Determine which data to display
   const displayData = viewMode === "store" ? modelData : ownedItems;
   return (
@@ -78,12 +86,21 @@ export const MenuSlider = () => {
                       className="w-full py-2 bg-purple-600 disabled:bg-slate-600 disabled:opacity-50 text-[10px] uppercase font-black rounded-lg hover:bg-purple-500 transition-colors"
                     >
                       {ownedItems.some((i) => i.name === item.name)
-                        ? "Owned"
+                        ? "In Collection"
                         : "Buy Asset"}
                     </button>
                   ) : (
-                    <button className="w-full py-2 bg-emerald-600 text-[10px] uppercase font-black rounded-lg hover:bg-emerald-500">
-                      Equip Item
+                    <button
+                      onClick={() => equipItem(item)}
+                      className={`w-full py-2 rounded-lg text-[10px] font-black transition-all ${
+                        equippedItem?.name === item.name
+                          ? "bg-amber-600 text-slate-900 ring-2 ring-white"
+                          : "bg-emerald-600 hover:bg-emerald-500"
+                      }`}
+                    >
+                      {equippedItem?.name === item.name
+                        ? "ACTIVE"
+                        : "EQUIP ITEM"}
                     </button>
                   )}
                 </div>

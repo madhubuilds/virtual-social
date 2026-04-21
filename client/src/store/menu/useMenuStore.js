@@ -4,6 +4,7 @@ const useMenuStore = create((set) => ({
   isOpen: false,
   viewMode: "store",
   ownedItems: [],
+  equippedItem: null,
   // UI Actions
   toggleMenu: () => set((state) => ({ isOpen: !state.isOpen })),
   closeMenu: () => set({ isOpen: false }),
@@ -15,7 +16,7 @@ const useMenuStore = create((set) => ({
       if (state.ownedItems.find((i) => i.name === item.name)) return state;
       return { ownedItems: [...state.ownedItems, item] };
     }),
-  openMenu: () => set({ isOpen: true }),
+  equipItem: (item) => set({ equippedItem: item }),
 }));
 
 export default useMenuStore;
