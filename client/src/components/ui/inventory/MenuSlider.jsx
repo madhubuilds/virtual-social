@@ -1,6 +1,7 @@
 import { X, ShoppingBag, UserCheck } from "lucide-react";
 import useMenuStore from "../../../store/menu/useMenuStore";
 import { modelData } from "../../../data/modelData";
+import usePlacementStore from "../../../store/placement/usePlacementStore";
 
 export const MenuSlider = () => {
   const {
@@ -13,6 +14,7 @@ export const MenuSlider = () => {
     equipItem,
     equippedItem,
   } = useMenuStore();
+
   // Determine which data to display
   const displayData = viewMode === "store" ? modelData : ownedItems;
   return (
@@ -91,7 +93,9 @@ export const MenuSlider = () => {
                     </button>
                   ) : (
                     <button
-                      onClick={() => equipItem(item)}
+                      onClick={() =>
+                        usePlacementStore.getState().startPlacing(item)
+                      }
                       className={`w-full py-2 rounded-lg text-[10px] font-black transition-all ${
                         equippedItem?.name === item.name
                           ? "bg-amber-600 text-slate-900 ring-2 ring-white"
