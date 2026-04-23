@@ -3,13 +3,15 @@ import ShopModal from "../components/ui/ShopModal";
 import { WorldCanvas } from "../components/world/WorldCanvas";
 import { InventoryPanel } from "../features/inventory/InventoryPanel";
 import { World } from "../features/world/World";
+import LandingPage from "./LandingPage";
 
 export default function App() {
   return (
     <div className="relative min-h-screen">
-      <WorldCanvas />
+      <LandingPage />
+      {/* <WorldCanvas />
       <ActionButton />
-      <ShopModal />
+      <ShopModal /> */}
       {/* <InventoryPanel /> */}
     </div>
   );
