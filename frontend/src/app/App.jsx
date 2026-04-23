@@ -7,7 +7,7 @@ import LandingPage from "./LandingPage";
 
 export default function App() {
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen bg-black text-white">
       <LandingPage />
       {/* <WorldCanvas />
       <ActionButton />
