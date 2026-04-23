@@ -2,7 +2,7 @@ import { create } from "zustand";
 
 const useInventoryStore = create((set) => ({
   ownedItemIds: [],
-
+  placedItems: [],
   // Logic to buy an item
   buyItem: (id) =>
     set((state) => ({
@@ -13,10 +13,18 @@ const useInventoryStore = create((set) => ({
     })),
 
   // Logic to "Equip/Place" in 3D world
-  equipItem: (id) => {
-    console.log(`Equipping item ${id} into the 3D space...`);
-    // This will eventually trigger adding a model to your Scene.jsx
-  },
+  equipItem: (asset) =>
+    set((state) => ({
+      placedItems: [
+        ...state.placedItems,
+        {
+          ...asset,
+          instanceId: Date.now(), // Unique ID for multiple of same model
+          position: [0, 0, 0],
+          rotation: [0, 0, 0],
+        },
+      ],
+    })),
 }));
 
 export default useInventoryStore;
